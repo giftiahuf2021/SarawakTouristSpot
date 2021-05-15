@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Sarawak Tourist Spot</title>
+
+	<!-- Bootstrap CSS -->
+	<link href="css\bootstrap.min.css" rel="stylesheet">
+		
+	<style>
+
+	</style>
+  </head>
 <body>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
@@ -70,19 +80,22 @@
         width: 200px;
       }
     </style>
-<h1>My First Google Map</h1>
+<h1 style="text-align:center;">Sarawak Tourist Spot <span  id="currentspotnumber" class="badge bg-info">New</span></h1>
 
 <div id="googleMap" style="width:100%;height:550px;"></div>
-<div id="content">Hello world!</div>
+<!-- <div id="content">Hello world!</div> -->
+<!-- <div id="longhouses">Bawang Assan Iban Longhouses, Sibu</div> -->
 
 <script>
 function myMap() {
 var mapProp= {
   center:new google.maps.LatLng(2.287778,111.830833),
-  zoom:5,
+  zoom:7,
 };
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
+
+/*
 const myLatLng = { lat: 2.287778, lng: 111.830833 };
 
   const contentString =
@@ -165,73 +178,275 @@ const infowindow = new google.maps.InfoWindow({
     map,
     title: "Hello World!",
   });
+
     marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
   
-  
-    /**
-   * A customized popup on the map.
-   */
-  class Popup extends google.maps.OverlayView {
-    constructor(position, content) {
-      super();
-      this.position = position;
-      content.classList.add("popup-bubble");
-      // This zero-height div is positioned at the bottom of the bubble.
-      const bubbleAnchor = document.createElement("div");
-      bubbleAnchor.classList.add("popup-bubble-anchor");
-      bubbleAnchor.appendChild(content);
-      // This zero-height div is positioned at the bottom of the tip.
-      this.containerDiv = document.createElement("div");
-      this.containerDiv.classList.add("popup-container");
-      this.containerDiv.appendChild(bubbleAnchor);
-      // Optionally stop clicks, etc., from bubbling up to the map.
-      Popup.preventMapHitsAndGesturesFrom(this.containerDiv);
-    }
-    /** Called when the popup is added to the map. */
-    onAdd() {
-      this.getPanes().floatPane.appendChild(this.containerDiv);
-    }
-    /** Called when the popup is removed from the map. */
-    onRemove() {
-      if (this.containerDiv.parentElement) {
-        this.containerDiv.parentElement.removeChild(this.containerDiv);
-      }
-    }
-    /** Called each frame when the popup needs to draw itself. */
-    draw() {
-      const divPosition = this.getProjection().fromLatLngToDivPixel(
-        this.position
-      );
-      // Hide the popup when it is far out of view.
-      const display =
-        Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000
-          ? "block"
-          : "none";
+  /*Bawang Assan Iban Longhouses, Sibu { "lat": 2.3547231462693765, "lng": 111.95475211185853 }
+  const longhousesLL = { "lat": 2.3547231462693765, "lng": 111.95475211185853 };
+  //infoWindow1.open(map);
+  const infowindow1 = new google.maps.InfoWindow({
+    content: '<p style="text-align:center;"><img src="http://2.bp.blogspot.com/_U873fpbUXM8/TNewFTB7QHI/AAAAAAAAABk/yIBAcz7_iBU/s1600/IMG_0007.JPG" height="200px"></p><h1>Bawang Assan Iban Longhouses, Sibu</h1><p>Bawang Assan is an Iban settlement of 9 longhouses dating from the 18th Century, about 40 minutes from Sibu by boat or road. It is particularly appealing to visitors for two reasons; firstly the longhouses range from the very traditional to the quite modern, so visitors can get a good idea of how longhouses have evolved to keep pace with the times; and secondly, many of the older inhabitants can speak excellent English and are therefore superb interpreters of their culture.  The longhouse also offers overnight stays, with visitors accompanying the locals in their daily activities, such as padi planting and fishing.</p> <p>From: https://sarawaktourism.com/attraction/bawang-assan-iban-longhouses/</p>',
+  });
+ 
+  const marker1 = new google.maps.Marker({
+    position: longhousesLL,
+    map,
+    title: "Bawang Assan Iban Longhouses, Sibu",
+  });
 
-      if (display === "block") {
-        this.containerDiv.style.left = divPosition.x + "px";
-        this.containerDiv.style.top = divPosition.y + "px";
-      }
+    marker1.addListener("click", () => {
+    infowindow1.open(map, marker1);
+  });
+  const sarikeilonghouse = { "lat": 1.9601856241489455, "lng": 112.29303955135221 };
+    const infowindow2 = new google.maps.InfoWindow({
+    content: '<p style="text-align:center;"><img src="images/RumahNyukaLonghouse.jpg" height="200px"></p><h1>Rumah Nyuka Longhouse, Sarikei</h1><p>There are many longhouses throughout Sarawak but the one in Sarikei is the most popular. The longhouse was constructed in 1955 and is made of ‘Belian’ wood. Despite how old the establishment is, Rumah Nyuka is proudly approved by the Ministry of Tourism in Malaysia. You might be wondering how many people actually live here. In total, it houses 300 people from 45 families.There are also plenty of activities to do during your stay. The locals are more than happy to guide you through jungle trekking and swimming at the waterfalls nearby. If you want to try something a bit different, you can even be a dabai collector or rubber tapper for the day.</p> <p>From: Internet</p>',
+  });
+ 
+  const marker2 = new google.maps.Marker({
+    position: new google.maps.LatLng(1.939666937639628, 111.49666347150757),
+    map,
+    title: "Rumah Nyuka Longhouse, Sarikei",
+  });
 
-      if (this.containerDiv.style.display !== display) {
-        this.containerDiv.style.display = display;
-      }
-    }
-  }
-  popup = new Popup(
-    new google.maps.LatLng(2.287778,111.830833),
-    document.getElementById("content")
-  );
-  popup.setMap(map);
+    marker2.addListener("click", () => {
+    infowindow2.open(map, marker2);
+  });
   
   
+    const sarikeipine = { "lat": 2.1487124171775718, "lng": 111.5214057149102 };
+    const infowindow3 = new google.maps.InfoWindow({
+    content: '<p style="text-align:center;"><img src="images/Pineapple.jpg" height="200px"></p><h1>The Pineapple Statue, Sarikei</h1><p>Sarikei is famous for its pineapple, and they built a pineapple statue to pay tribute to the town\'s most product. Sarikei\'s pineapple is regarded as the sweetest in the Sarawak.</p> <p>From: Internet</p>',
+  });
+ 
+  const marker3 = new google.maps.Marker({
+    position: sarikeipine,
+    map,
+    title: "The Pineapple Statue, Sarikei",
+  });
+
+    marker3.addListener("click", () => {
+    infowindow3.open(map, marker3);
+  });
+  */
+  
+  
+	miritouristspot = [
+		{
+		  "name":"Lambir Hills National Park, Miri",
+		  "images":"images/LambirHillsNationalPark.jpg",
+		  "lat": 4.19848869744107,
+		  "long": 114.0427764377005,
+		  "content":"The Lambir Hills National Park is a national park in Miri Division, Sarawak, Malaysia, on the island of Borneo. It is a small park, at 6,952 hectares, and is composed largely of mixed dipterocarp forest, with some small areas of 'kerangas'.  It is famous for its waterfall and hiking activities."
+		},
+		{
+		  "name":"Gunung Mulu National Park, Miri",
+		  "images":"images/Mulupinnacles.jpg",
+		  "lat": 4.094720198245258,
+		  "long": 114.895326515328,
+		  "content":"Limestone pinnacles rise into razor-sharp points guarding the entrance to dozens of almost hidden caves. Soaring mountains surround 17 vegetation zones inside the UNESCO-listed national park.Guided tours pass through both Clearwater and Deer Cave before exploring canyons, waterfalls and otherworldly landscapes.Keep your eyes open for primates, deer and billions of squeaking bats.Getting to Gunung Mulu is almost as challenging as visiting another planet. Travelers need to either take a 30-minute flight from Miri or embark on a multi-day expedition through the jungle.Most visitors usually stay the night in the park’s accommodation."
+		},
+		{
+		  "name":"Tusan Beach, Miri",
+		  "images":"images/TusanBeach.jpg",
+		  "lat": 4.12816060348216,
+		  "long": 113.82255824313758,
+		  "content":"Tusan Beach is just far enough from Miri to keep the visitor numbers at bay. But close enough to reach within 30 minutes by car. The beach itself has a long sandy coastline and gentle waters. Vertical sandstone cliffs tower against Tusan’s sandy shore. Bring the camera and capture the strange rock formations caused by decades of erosion or witness the rare and hypnotic Blue Tears that are caused by Dinoflagellates, a micro-organisms that generate light under certain conditions."
+		},
+		{
+		  "name":"The Grand Old Lady, Miri",
+		  "images":"images/Thegrandoldlady.jpg",
+		  "lat": 4.391153543684996,
+		  "long": 113.99706889678444,
+		  "content":"The Grand Old Lady on Canada Hill marks the spot where Shell first drilled oil in Miri back in 1910.Standing at 30 meters (98 feet), the monument is a replica of Malaysia’s first oil well. The landmark offers a window into the importance of the industry which revolutionized Malaysia.While the monument itself isn’t much to look at, travelers usually combine the experience with hiking Canada Hill.Snap photographs and consider how the oil discovered in this spot fueled the nation’s development and paid for Kuala Lumpur’s Petronas Towers."
+		},
+		{
+		  "name":"Miri CIty Fan, Miri",
+		  "images":"images/MiriCityFan.jpg",
+		  "lat": 4.402533112594024,
+		  "long": 113.9934204102778,
+		  "content":"From above, Miri City Fan resembles the shape of a traditional handheld fan.On the ground, it sprawls 26 acres separated into ten thematic zones. The park’s centerpiece is an amphitheater surrounded by a koi pond, maintained Islamic gardens and a promenade.Sit beneath the trees and watch the musical fountain. Or head to Miri Library to brush up on local culture inside the spacious air-conditioned reading room.After opening in the 1990s, Miri City Fan has been a hit with residents.Joggers speed along the paths in the cooler morning and evening air."
+		},
+		{
+		  "name":"Bukit Aup Jubilee Park, Sibu",
+		  "images":"images/IMG_20190919_143903.jpg",
+		  "lat": 2.3577514410016476,
+		  "long": 111.82746830741384,
+		  "content":"Winner of the 1998 National Landscaping Competition for Public Parks, Bukit Aup is a 24-acre (10ha) cluster of low hills with a lookout tower offering views of the surrounding plantations, longhouses and the Igan River. The tower, located on the park’s highest peak (59m), is often visited by local Ibans bringing offerings to a benevolent spirit, the Naga Bari, which is believed to help people in need.  There are picnic huts, a canteen, a suspension bridge over a small lake which is good for photo opportunities, and jogging and walking trails."
+		},		
+		{
+		  "name":"Bukit Lima Nature Reserve, Sibu",
+		  "images":"images/BukitLimaNatureReserve.jpg",
+		  "lat": 2.2793532663512996, 
+		  "long": 111.86435933684756,
+		  "content":"Bukit Lima Nature Reserve is open to public since year 2001.  It is located at the heart of Sibu town, in the midst of Kampung Sentosa resettlement.   The recreational peat swamp wooden plank walk was burned down in July 2014, and was repaired in September same year with 600 kelapayan samplings. Bukit Lima Nature Reserve is famous among its visitors for its jungle trails suitable for forest walks as well as jogging.  It allows visitors to experience peat swamp forest and enjoy the interaction with the nature and wildlife."
+		},		
+		{
+		  "name":"King's Trioplex, Sibu",
+		  "images":"images/kingtrioplex.jpg",
+		  "lat": 2.289669024029141, 
+		  "long": 111.83019108154575,
+		  "content":"This is an entertainment experience in full 3-D, digital-based Dolby Surround Sound System, enhanced with a one of a kind wide-screen showing in Sibu. Patrons can enjoy the latest blockbusters from Hong Kong as well as Hollywood.  The King’s Theatre can also be transformed into a convention hall accommodating up to 950 people, ideal for mini-concerts and other medium-scale functions. King’s Theatre, magnificent and spacious, is ideal for seminars, public forums, stage show, concerts, charity shows, singing concerts, etc, with its superb sound system, warm ambiance, high hygiene standard, comfortable seating, good air-conditioning system, and ample parking facilities at a very competitive price."
+		},
+		{
+		  "name":"Hoover Memorial Square, Sibu",
+		  "images":"images/HooverMemorialSquare.jpg",
+		  "lat": 2.3279370778071997, 
+		  "long": 111.83618219874393,
+		  "content":"This square is named after a great Methodist Missionary (from USA), Reverend James Matthew Hoover. Reverend Hoover was the first foreign pastor who served the Methodist Churches of Sibu. From 1903 to 1935, he had helped to build 41 churches and 40 schools all over Sibu. When the Fuzhou settlement pioneer, Mr.Wong Nai Siong, left Sibu in 1904, Rev. Hoover helped to manage the settlement. His contributions to the early development of Sibu were fondly and gratefully recognized."
+		},		
+		{
+		  "name":"Lau King Howe Medical Museum, Sibu",
+		  "images":"images/lkh.jpg",
+		  "lat": 2.291318462990717, 
+		  "long": 111.82185108339927,
+		  "content":"Lau King Home came to Sibu in 1915 to help further develop the rubber plantation activities here in Malaysia.  He was a very committed man and saw the great medical needs of the people of Sibu and thus went and consult the Rajah about setting up funds for a hospital and to get a grant of land from the Government.  By 1936 the hospital was declared opened and served the community well while Lau King Howe returned back to China to live out the remainder of his life. But in the early 80s when the Sibu General Hospital was built, this hospital that saved and served the community well during its early years disappeared into oblivion. Today it has been turned into a museum to showcase the love showed by a man for the town of Sibu which has made him into a local legend."
+		},
+		{
+		  "name":"Sibu Gateway, Sibu",
+		  "images":"images/SibuGateway.jpg",
+		  "lat": 2.2880338376563696,
+		  "long":  111.83110041374552,
+		  "content":"This symbolic ‘gateway’ to the town of Sibu is located on Jln Kampung Nyabor includes illuminated fountains, an open air stage, and Lin’s Garden, which features the second of Sibu’s two swan statues, guarded by the 12 signs of the Chinese Zodiac."
+		},
+		{
+		  "name":"Sibu Heritage Centre, Sibu",
+		  "images":"images/SibuHeritageCentre.jpg",
+		  "lat": 2.2897030848387834, 
+		  "long": 111.827989010382,
+		  "content":"The Sibu Heritage Centre is housed in the former Sibu Municipal Council building, and displays the rich cultural heritage of the various ethnic groups of the Central Region. Sibu Cultural Heritage Museum houses a fine collection of antiques, artifacts and photos, cultural exhibits on the various ethnic groups of the Rejang. An exhibit at the museum includes the early beginnings of Sibu, the coming of early Chinese migrants from the various dialect groups and also those of the earliest ethnic tribes. Also from Iban longhouses displaying genuine skulls which were hung, reflecting the tribes’ warrior past to the seafaring Melanaus’ tools and early signs of the Malay culture, this is a must see for visitors. Another very impressive feature in the museum is its eye catching collection of Chinese porcelain and clay vases. These vases, some of which carries with them great sentimental value to the owners, are by far the most tangible link, which the Chinese here have with Imperial China back then. From time to time, new exhibits are added to give variety and keeping the museum up to date. Visitors can view taxidermied animals from around the world and those found in the heart of Borneo, such as the moon rat, the rhinoceros hornbill or even the gigantic Orang Utan."
+		},
+		{
+		  "name":"Sungai Merah Heritage Walk",
+		  "images":"images/smhw.jpg",
+		  "lat": 2.325367958356883, 
+		  "long": 111.83939469689054,
+		  "content":"The site of the earliest Chinese settlements in Sibu, Sungai Merah (Red River) is an old bazaar about 10 minutes by road from the town centre.  The area has recently been restored and landscaped, with a pleasant walking trail along the river front (the water really is red, changing occasionally to yellow!) which leads through a quaintly landscaped park to the Wong Nai Siong Memorial Garden, erected in honour of the town’s principal founder and featuring a bronze statue of the missionary leader.  Take a taxi or see Travel Connections for bus information."
+		},
+		{
+		  "name":"Tua Pek Kong Temple & Goddess of Mercy Pagoda, Sibu",
+		  "images":"images/tpg.jpg",
+		  "lat": 2.287403682367291, 
+		  "long": 111.82604903921818,
+		  "content":"Eng Ann Tua Pek Kong of Sibu was founded around 1890, over 100 years ago. It is the oldest and best-preserved Chinese temple in Sibu. Most of its building material were imported from china including statue of the host deity, Lord Tua Paek Kong. From the original wooden structure, it was rebuilt in 1897 into a Taoist architecture building, with a 7-storey pagoda for the Goddess of Mercy (Kuan Yin). It is said to be one of the most perfectly proportioned pagodas outside Mainland China.  Visitors are welcome to climb its many steps to enjoy spectacular views of the Rejang and the Sibu Waterfront, especially at sunset."
+		},
+		{
+		  "name":"Yu Lung San Tien En Si (Jade Dragon Temple), Sibu",
+		  "images":"images/YuLungSanTienEnSi.jpg",
+		  "lat": 2.2890148038557228, 
+		  "long": 112.01822212572684,
+		  "content":"The Yu Lung San Tien En Si a.k.a Jade Dragon Temple at the Sibu-Bintulu Road is believed to be the largest temple complex not only in Malaysia but believed to be in South East Asia as well. It is a religious place for Buddhism, Taoism and Confucianism and is known for bringing all 3 different forms of practice under one roof.  The temple itself is not just a place of worship but it has turned into a major tourist attraction in Sarawak. The temple is a hotspot for photography buffs who marvel at the majestic architecture and detailed interior design that would make it a picture perfect location."
+		},
+		{
+		  "name":"Hoover Memorial Square, Sibu",
+		  "images":"images/HooverMemorialSquare.jpg",
+		  "lat": 2.327765558093851, 
+		  "long": 111.83604272387323,
+		  "content":"This square is named after a great Methodist Missionary (from USA), Reverend James Matthew Hoover. Reverend Hoover was the first foreign pastor who served the Methodist Churches of Sibu. From 1903 to 1935, he had helped to build 41 churches and 40 schools all over Sibu. When the Fuzhou settlement pioneer, Mr.Wong Nai Siong, left Sibu in 1904, Rev. Hoover helped to manage the settlement. His contributions to the early development of Sibu were fondly and gratefully recognized."
+		},
+		{
+		  "name":"The Pineapple Statue, Sarikei",
+		  "images":"images/Pineapple.jpg",
+		  "lat": 2.1487124171775718,
+		  "long": 111.5214057149102,
+		  "content":"Sarikei is famous for its pineapple, and they built a pineapple statue to pay tribute to the town\'s most product. Sarikei\'s pineapple is regarded as the sweetest in the Sarawak."
+		},
+		{
+		  "name":"Rumah Nyuka Longhouse, Sarikei",
+		  "images":"images/RumahNyukaLonghouse.jpg",
+		  "lat": 1.9210457003540238, 
+		  "long": 111.49781937969283,
+		  "content":"There are many longhouses throughout Sarawak but the one in Sarikei is the most popular. The longhouse was constructed in 1955 and is made of ‘Belian’ wood. Despite how old the establishment is, Rumah Nyuka is proudly approved by the Ministry of Tourism in Malaysia. You might be wondering how many people actually live here. In total, it houses 300 people from 45 families.There are also plenty of activities to do during your stay. The locals are more than happy to guide you through jungle trekking and swimming at the waterfalls nearby. If you want to try something a bit different, you can even be a dabai collector or rubber tapper for the day."
+		},
+		{
+		  "name":"Bawang Assan Iban Longhouses, Sibu",
+		  "images":"images/longhouse-sarawak-bawang-assan-03.jpg",
+		  "lat": 2.3660855782068984, 
+		  "long": 111.95057071525885,
+		  "content":"Bawang Assan is an Iban settlement of 9 longhouses dating from the 18th Century, about 40 minutes from Sibu by boat or road. It is particularly appealing to visitors for two reasons; firstly the longhouses range from the very traditional to the quite modern, so visitors can get a good idea of how longhouses have evolved to keep pace with the times; and secondly, many of the older inhabitants can speak excellent English and are therefore superb interpreters of their culture.  The longhouse also offers overnight stays, with visitors accompanying the locals in their daily activities, such as padi planting and fishing."
+		  //"form":"https://sarawaktourism.com/attraction/bawang-assan-iban-longhouses/"
+		},
+		{
+		  "name":"test",
+		  "images":"images/test.png",
+		  "lat": 4,
+		  "long": 114,
+		  "content":"test"
+		},
+
+		
+	]
+	
+	
+	/*
+	*	Current Number of tourist spot
+	*/
+	document.getElementById("currentspotnumber").innerHTML = miritouristspot.length;
+
+	//	Add marker
+	for (i = 0; i < miritouristspot.length; i++) {
+		//console.log(miritouristspot[i]["content"])
+		let images = miritouristspot[i]["images"]
+		let name = miritouristspot[i]["name"]
+		let content = miritouristspot[i]["content"]
+		let contents = '<p style="text-align:center;"><img src="'+images+'" height="200px"></p><h1>'+name+'</h1><p style="text-align: justify;text-justify: inter-word;">'+content+'</p><p>From: Internet</p>';
+			let marker1 = new google.maps.Marker({
+		  position: new google.maps.LatLng(miritouristspot[i]["lat"], miritouristspot[i]["long"]),
+		  map: map,
+		  title: name,
+		  icon: {
+			  url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+			}
+		});
+		
+		let infowindow = new google.maps.InfoWindow({
+			content: contents,
+		  });
+		  
+		google.maps.event.addListener(marker1, 'click', function(evt) {
+		
+
+		  //infowindow.setContent(contents);
+		  infowindow.open(map, marker1);
+		})
+
+	}
+	
+	/*
+			{
+		  "name":"Gunung Mulu National Park, Miri",
+		  "images":"images/Mulupinnacles.jpg",
+		  "lat": 4,
+		  "long": 114,
+		  "content":"xxx."
+		},
+		
+		  icon: {
+			  url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+			}
+		  icon: {
+			  url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
+			}
+		  icon: {
+			  url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+			}
+		  icon: {
+			  url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+			}
+	*/
 
 }
+
 </script>
 
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC66ea5jLKLYStpiFZoG91YtD0-du1qYdA&callback=myMap"></script> -->
+
+<!-- Google official API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC66ea5jLKLYStpiFZoG91YtD0-du1qYdA&callback=myMap"></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="js\bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
