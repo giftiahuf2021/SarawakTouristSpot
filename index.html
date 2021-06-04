@@ -2,19 +2,17 @@
 <html>
   <head>
     <title>Sarawak Tourist Spot</title>
+	
+	<link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Coat_of_arms_of_Sarawak.svg/1200px-Coat_of_arms_of_Sarawak.svg.png">
+	
 
 	<!-- Bootstrap CSS -->
 	<link href="css\bootstrap.min.css" rel="stylesheet">
 		
 	<style>
-
-	</style>
-  </head>
-<body>
-    <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
+	   #map {
         height: 100%;
       }
 
@@ -25,66 +23,12 @@
         margin: 0;
         padding: 0;
       }
+	</style>
+  </head>
+<body>
+	<h1 style="text-align:center;">Sarawak Tourist Spot <span  id="currentspotnumber" class="badge bg-info">New</span></h1>
 
-      /* The popup bubble styling. */
-      .popup-bubble {
-        /* Position the bubble centred-above its parent. */
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translate(-50%, -100%);
-        /* Style the bubble. */
-        background-color: white;
-        padding: 5px;
-        border-radius: 5px;
-        font-family: sans-serif;
-        overflow-y: auto;
-        max-height: 60px;
-        box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
-		margin-top: -35px; /*Bring the text upside a bit 13.5.2021*/
-      }
-
-      /* The parent of the bubble. A zero-height div at the top of the tip. */
-      .popup-bubble-anchor {
-        /* Position the div a fixed distance above the tip. */
-        position: absolute;
-        width: 100%;
-        bottom: 8px;
-        left: 0;
-      }
-
-      /* This element draws the tip. */
-      .popup-bubble-anchor::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        /* Center the tip horizontally. */
-        transform: translate(-50%, 0);
-        /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
-        width: 0;
-        height: 0;
-        /* The tip is 8px high, and 12px wide. */
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-top: 8px solid white;
-		margin-top: -35px;	/*Bring the text upside a bit 13.5.2021*/
-      }
-
-      /* JavaScript will position this div at the bottom of the popup tip. */
-      .popup-container {
-        cursor: auto;
-        height: 0;
-        position: absolute;
-        /* The max width of the info window. */
-        width: 200px;
-      }
-    </style>
-<h1 style="text-align:center;">Sarawak Tourist Spot <span  id="currentspotnumber" class="badge bg-info">New</span></h1>
-
-<div id="googleMap" style="width:100%;height:550px;"></div>
-<!-- <div id="content">Hello world!</div> -->
-<!-- <div id="longhouses">Bawang Assan Iban Longhouses, Sibu</div> -->
+	<div id="googleMap" style="width:100%;height:550px;"></div>
 
 <script>
 function myMap() {
@@ -94,144 +38,8 @@ var mapProp= {
 };
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-
-/*
-const myLatLng = { lat: 2.287778, lng: 111.830833 };
-
-  const contentString =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-    '<div id="bodyContent">' +
-    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "sandstone rock formation in the southern part of the " +
-    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    "Aboriginal people of the area. It has many springs, waterholes, " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +
-	    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "sandstone rock formation in the southern part of the " +
-    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    "Aboriginal people of the area. It has many springs, waterholes, " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +
-	    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "sandstone rock formation in the southern part of the " +
-    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    "Aboriginal people of the area. It has many springs, waterholes, " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +
-	    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "sandstone rock formation in the southern part of the " +
-    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    "Aboriginal people of the area. It has many springs, waterholes, " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +
-	    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "sandstone rock formation in the southern part of the " +
-    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    "Aboriginal people of the area. It has many springs, waterholes, " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "sandstone rock formation in the southern part of the " +
-    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    "Aboriginal people of the area. It has many springs, waterholes, " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +
-    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-    "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-    "(last visited June 22, 2009).</p>" +
-    "</div>" +
-    "</div>";
-
-const infowindow = new google.maps.InfoWindow({
-    content: contentString,
-  });
   
-  const marker = new google.maps.Marker({
-    position: myLatLng,
-    map,
-    title: "Hello World!",
-  });
-
-    marker.addListener("click", () => {
-    infowindow.open(map, marker);
-  });
-  
-  /*Bawang Assan Iban Longhouses, Sibu { "lat": 2.3547231462693765, "lng": 111.95475211185853 }
-  const longhousesLL = { "lat": 2.3547231462693765, "lng": 111.95475211185853 };
-  //infoWindow1.open(map);
-  const infowindow1 = new google.maps.InfoWindow({
-    content: '<p style="text-align:center;"><img src="http://2.bp.blogspot.com/_U873fpbUXM8/TNewFTB7QHI/AAAAAAAAABk/yIBAcz7_iBU/s1600/IMG_0007.JPG" height="200px"></p><h1>Bawang Assan Iban Longhouses, Sibu</h1><p>Bawang Assan is an Iban settlement of 9 longhouses dating from the 18th Century, about 40 minutes from Sibu by boat or road. It is particularly appealing to visitors for two reasons; firstly the longhouses range from the very traditional to the quite modern, so visitors can get a good idea of how longhouses have evolved to keep pace with the times; and secondly, many of the older inhabitants can speak excellent English and are therefore superb interpreters of their culture.  The longhouse also offers overnight stays, with visitors accompanying the locals in their daily activities, such as padi planting and fishing.</p> <p>From: https://sarawaktourism.com/attraction/bawang-assan-iban-longhouses/</p>',
-  });
- 
-  const marker1 = new google.maps.Marker({
-    position: longhousesLL,
-    map,
-    title: "Bawang Assan Iban Longhouses, Sibu",
-  });
-
-    marker1.addListener("click", () => {
-    infowindow1.open(map, marker1);
-  });
-  const sarikeilonghouse = { "lat": 1.9601856241489455, "lng": 112.29303955135221 };
-    const infowindow2 = new google.maps.InfoWindow({
-    content: '<p style="text-align:center;"><img src="images/RumahNyukaLonghouse.jpg" height="200px"></p><h1>Rumah Nyuka Longhouse, Sarikei</h1><p>There are many longhouses throughout Sarawak but the one in Sarikei is the most popular. The longhouse was constructed in 1955 and is made of ‘Belian’ wood. Despite how old the establishment is, Rumah Nyuka is proudly approved by the Ministry of Tourism in Malaysia. You might be wondering how many people actually live here. In total, it houses 300 people from 45 families.There are also plenty of activities to do during your stay. The locals are more than happy to guide you through jungle trekking and swimming at the waterfalls nearby. If you want to try something a bit different, you can even be a dabai collector or rubber tapper for the day.</p> <p>From: Internet</p>',
-  });
- 
-  const marker2 = new google.maps.Marker({
-    position: new google.maps.LatLng(1.939666937639628, 111.49666347150757),
-    map,
-    title: "Rumah Nyuka Longhouse, Sarikei",
-  });
-
-    marker2.addListener("click", () => {
-    infowindow2.open(map, marker2);
-  });
-  
-  
-    const sarikeipine = { "lat": 2.1487124171775718, "lng": 111.5214057149102 };
-    const infowindow3 = new google.maps.InfoWindow({
-    content: '<p style="text-align:center;"><img src="images/Pineapple.jpg" height="200px"></p><h1>The Pineapple Statue, Sarikei</h1><p>Sarikei is famous for its pineapple, and they built a pineapple statue to pay tribute to the town\'s most product. Sarikei\'s pineapple is regarded as the sweetest in the Sarawak.</p> <p>From: Internet</p>',
-  });
- 
-  const marker3 = new google.maps.Marker({
-    position: sarikeipine,
-    map,
-    title: "The Pineapple Statue, Sarikei",
-  });
-
-    marker3.addListener("click", () => {
-    infowindow3.open(map, marker3);
-  });
-  */
-  
-  
+	//	Tourist spot list details	
 	miritouristspot = [
 		{
 		  "name":"Lambir Hills National Park, Miri",
@@ -285,8 +93,8 @@ const infowindow = new google.maps.InfoWindow({
 		{
 		  "name":"King's Trioplex, Sibu",
 		  "images":"images/kingtrioplex.jpg",
-		  "lat": 2.289669024029141, 
-		  "long": 111.83019108154575,
+		  "lat": 2.289454618610928, 
+		  "long": 111.83023399689058,
 		  "content":"This is an entertainment experience in full 3-D, digital-based Dolby Surround Sound System, enhanced with a one of a kind wide-screen showing in Sibu. Patrons can enjoy the latest blockbusters from Hong Kong as well as Hollywood.  The King’s Theatre can also be transformed into a convention hall accommodating up to 950 people, ideal for mini-concerts and other medium-scale functions. King’s Theatre, magnificent and spacious, is ideal for seminars, public forums, stage show, concerts, charity shows, singing concerts, etc, with its superb sound system, warm ambiance, high hygiene standard, comfortable seating, good air-conditioning system, and ample parking facilities at a very competitive price."
 		},
 		{
@@ -339,17 +147,10 @@ const infowindow = new google.maps.InfoWindow({
 		  "content":"The Yu Lung San Tien En Si a.k.a Jade Dragon Temple at the Sibu-Bintulu Road is believed to be the largest temple complex not only in Malaysia but believed to be in South East Asia as well. It is a religious place for Buddhism, Taoism and Confucianism and is known for bringing all 3 different forms of practice under one roof.  The temple itself is not just a place of worship but it has turned into a major tourist attraction in Sarawak. The temple is a hotspot for photography buffs who marvel at the majestic architecture and detailed interior design that would make it a picture perfect location."
 		},
 		{
-		  "name":"Hoover Memorial Square, Sibu",
-		  "images":"images/HooverMemorialSquare.jpg",
-		  "lat": 2.327765558093851, 
-		  "long": 111.83604272387323,
-		  "content":"This square is named after a great Methodist Missionary (from USA), Reverend James Matthew Hoover. Reverend Hoover was the first foreign pastor who served the Methodist Churches of Sibu. From 1903 to 1935, he had helped to build 41 churches and 40 schools all over Sibu. When the Fuzhou settlement pioneer, Mr.Wong Nai Siong, left Sibu in 1904, Rev. Hoover helped to manage the settlement. His contributions to the early development of Sibu were fondly and gratefully recognized."
-		},
-		{
 		  "name":"The Pineapple Statue, Sarikei",
 		  "images":"images/Pineapple.jpg",
-		  "lat": 2.1487124171775718,
-		  "long": 111.5214057149102,
+		  "lat": 2.133390183653512, 
+		  "long": 111.52095915456327,
 		  "content":"Sarikei is famous for its pineapple, and they built a pineapple statue to pay tribute to the town\'s most product. Sarikei\'s pineapple is regarded as the sweetest in the Sarawak."
 		},
 		{
@@ -366,6 +167,27 @@ const infowindow = new google.maps.InfoWindow({
 		  "long": 111.95057071525885,
 		  "content":"Bawang Assan is an Iban settlement of 9 longhouses dating from the 18th Century, about 40 minutes from Sibu by boat or road. It is particularly appealing to visitors for two reasons; firstly the longhouses range from the very traditional to the quite modern, so visitors can get a good idea of how longhouses have evolved to keep pace with the times; and secondly, many of the older inhabitants can speak excellent English and are therefore superb interpreters of their culture.  The longhouse also offers overnight stays, with visitors accompanying the locals in their daily activities, such as padi planting and fishing."
 		  //"form":"https://sarawaktourism.com/attraction/bawang-assan-iban-longhouses/"
+		},
+		{
+		  "name":"Sibu Central Market, Sibu",
+		  "images":"images/sibucm.jpg",
+		  "lat": 2.287526014755813, 
+		  "long": 111.82831355092675,
+		  "content":"Sibu’s Central Market was built in 1996 on Jln Channel opposite the Express Boat Passenger Terminal, and is the largest and most interesting market in Sarawak. By combining the former wet market and the native Lembangan market in clean and hygienic new surroundings, the area contains a wide range of stalls offering all kinds vegetables, fruites, meat, general merchandise as well as food and drinks. Highlights are the Iban ladies selling exotic fruits, jungle produce and handicrafts, and the Chinese poultry sellers who offer their live chickens and ducks neatly wrapped up in tubes fashioned from old newspapers. The market can be leisurely covered on foot once you have arrived in Sibu town."
+		},
+		{
+		  "name":"Sibu Night Market, Sibu",
+		  "images":"images/SibuNightMarket.jpg",
+		  "lat": 2.2887418255701477, 
+		  "long": 111.82782059689055,
+		  "content":"The vibrant Night Market (Jln Market, between Jln Lintang and Jln Bengkel) sets up every afternoon around 5pm and operates until 10pm, sometimes later. The stalls offer all manners of household goods, footwear, fashion items, and of course food like dim sum, beef satay, BBQ chicken, BBQ pork, some cheap beer and lots more. Cakes, steamed buns, satay, pastries, dumplings and many other kinds of local delicacies are on sale here, with shoppers happily snacking as they wander from stall to stall. The market can be reached by foot if you are staying in Sibu town."
+		},
+		{
+		  "name":"Fatt Bakery (Kompia Making), Sibu (Picture From Google)",
+		  "images":"images/KompiaMaking.jpg",
+		  "lat": 2.287743881672853, 
+		  "long": 111.82807968220905,
+		  "content":"The Kompia is a Sibu’s most famous, and favourite, bun. An iconic pastry which has been a part of the Foochow community traditions for centuries. Nowadays, it become one of Sibu signature food. A must try when are in Sibu, especially fresh from the coal oven as seen in this shop. After watching the kompia making process, you can buy some of the fresh buns for a snack later on in the day. This shop is within walking distance of main areas in Sibu, and is close to the Sibu murals that pepper the town, making it a nice stop on your town tour."
 		},
 		{
 		  "name":"Annah Rais Bidayuh Longhouse, Kuching (Picture From Google)",
@@ -462,7 +284,9 @@ const infowindow = new google.maps.InfoWindow({
 		let images = miritouristspot[i]["images"]
 		let name = miritouristspot[i]["name"]
 		let content = miritouristspot[i]["content"]
-		let contents = '<p style="text-align:center;"><img src="'+images+'" height="200px"></p><h1>'+name+'</h1><p style="text-align: justify;text-justify: inter-word;">'+content+'</p><p>From: Internet</p>';
+		let lat = miritouristspot[i]["lat"]
+		let long = miritouristspot[i]["long"]
+		let contents = '<p style="text-align:center;"><img src="'+images+'" height="200px"></p><h1>'+name+'</h1><h6><a href="http://www.google.com/maps/place/@'+ lat + ',' + long +',22z" target="blank">('+ lat + ', ' + long +')</a></h6><p style="text-align: justify;text-justify: inter-word;">'+content+'</p><p>From: Internet</p>';
 			let marker1 = new google.maps.Marker({
 		  position: new google.maps.LatLng(miritouristspot[i]["lat"], miritouristspot[i]["long"]),
 		  map: map,
@@ -484,38 +308,16 @@ const infowindow = new google.maps.InfoWindow({
 		})
 
 	}
-	
-	/*
-			{
-		  "name":"Gunung Mulu National Park, Miri",
-		  "images":"images/Mulupinnacles.jpg",
-		  "lat": 4,
-		  "long": 114,
-		  "content":"xxx."
-		},
-		
-		  icon: {
-			  url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-			}
-		  icon: {
-			  url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
-			}
-		  icon: {
-			  url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
-			}
-		  icon: {
-			  url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
-			}
-	*/
 
 }
 
 </script>
 
+<!-- Personal API -->
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC66ea5jLKLYStpiFZoG91YtD0-du1qYdA&callback=myMap"></script> -->
 
 <!-- Google official API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC66ea5jLKLYStpiFZoG91YtD0-du1qYdA&callback=myMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=myMap"></script>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="js\bootstrap.bundle.min.js"></script>
